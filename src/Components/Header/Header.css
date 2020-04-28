@@ -1,0 +1,57 @@
+header {
+	display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 70px;
+}
+
+.header-list {
+    margin: 0;
+    padding: 0;
+    width: 75%;
+    height: 100%;
+    background-color: rgba(253, 253, 17, 0.459);
+}
+
+.list-items {
+    padding: 0;
+    display: flex;
+    justify-content: space-evenly; /*space-between;*/
+}
+
+.header-logout {
+    width: 25%;
+    height: 100%;
+}
+
+.logout-greeting {
+    height: 35%;
+    font-size: 17px;
+    font-style: italic;
+    text-align: right;
+    padding-right: 5%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.logout-button {
+    height: 65%;
+    padding-right: 5%;
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.clickable:hover {
+    color: slategray;
+}
+
+li {
+    list-style-type: none;
+}

@@ -1,11 +1,8 @@
-body {
-  width: 1000px;
+#general-div {
+  width: 1200px;
   margin: 0;
   margin-left: auto;
   margin-right: auto;
   font-family: Arial, Helvetica, sans-serif;
-}
-
-#root {
   background-color: rgba(240, 241, 233, 0.4);
 }

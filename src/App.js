@@ -1,28 +1,33 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import Header from './Components/Header/Header';
+import ManagerPage from './Components/ManagerPage/ManagerPage';
+import ServiceManPage from './Components/ServiceManPage/ServiceManPage';
+import BuyerPage from './Components/BuyerPage/BuyerPage';
+import DirectorPage from './Components/DirectorPage/DirectorPage';
+import LoginPage from './Components/LoginPage/LoginPage';
 
 class App extends React.Component {
-  menuItems = ["Catalog", "Clients", "Orders", "Suppliers"];
+  constructor(props) {
+    super(props);
+    this.state = {
+      userRole: 1
+    };
+  }
+
   username = "Kirill";
 
   logOut() {
-    alert("log out");
-  }
-
-  clickMenuItem() {
-    alert("menu click");
+    this.setState({userRole: 0});
   }
 
   render() {
     return (
-      <div>
-        <Header items={this.menuItems}
-          username={this.username}
-          logOutCallback={() => this.logOut()} 
-          clickMenuCallback= {() => this.clickMenuItem()} />
-        <h1>The</h1>
-        <h1>Other</h1>
-        <h1>Content</h1>
+      <div id="general-div">
+        {this.state.userRole === 0 && <LoginPage />}
+        {this.state.userRole === 1 && <ManagerPage logOutCallback={() => this.logOut()} username={this.username} />}
+        {this.state.userRole === 2 && <ServiceManPage logOutCallback={() => this.logOut()} username={this.username} />}
+        {this.state.userRole === 3 && <BuyerPage logOutCallback={() => this.logOut()} username={this.username} />}
+        {this.state.userRole === 4 && <DirectorPage logOutCallback={() => this.logOut()} username={this.username} />}
       </div>
     );
   }  

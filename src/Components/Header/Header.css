@@ -1,4 +1,4 @@
-header {
+.header-general {
 	display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -11,12 +11,14 @@ header {
     width: 75%;
     height: 100%;
     background-color: rgba(253, 253, 17, 0.459);
+    align-items: center;
 }
 
 .list-items {
     padding: 0;
     display: flex;
     justify-content: space-evenly; /*space-between;*/
+    margin-top: 20px; /*remove*/
 }
 
 .header-logout {
@@ -52,6 +54,6 @@ header {
     color: slategray;
 }
 
-li {
+li.clickable {
     list-style-type: none;
 }

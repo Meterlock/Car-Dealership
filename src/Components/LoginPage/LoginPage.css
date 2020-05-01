@@ -1,0 +1,12 @@
+#general-login-div {
+    height: 100vh;
+}
+
+#general-div {
+    background-color: initial;
+}
+
+#login-id {
+    color: seagreen;
+    padding-bottom: 40px;
+}

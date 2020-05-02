@@ -1,9 +1,6 @@
 #general-login-div {
     height: 100vh;
-}
-
-#general-div {
-    background-color: initial;
+    background-color: white;
 }
 
 #login-id {

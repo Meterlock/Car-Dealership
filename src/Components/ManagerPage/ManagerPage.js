@@ -1,20 +1,20 @@
 import React from 'react';
 import Header from '../Header/Header';
-import {Tab, Tabs} from 'react-bootstrap';
+import SectionTitle from '../SectionTitle/SectionTitle';
+import Catalog from '../Catalog/Catalog';
 
 class ManagerPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        key: "home"
+        currentSection: this.menuItems[0]
     };
   }
 
   menuItems = ["Catalog", "Clients", "Orders", "Delivery requests"];
-  //key = "home";
 
   clickMenuItem(itemName) {
-    alert(itemName);
+    this.setState({currentSection: itemName});
   }
 
   render() {
@@ -24,24 +24,8 @@ class ManagerPage extends React.Component {
                 username={this.props.username}
                 logOutCallback={() => this.props.logOutCallback()}
                 clickMenuCallback= {(i) => this.clickMenuItem(i)} />
-            <h1>The</h1>
-            <h1>Other</h1>
-            <h1>Content</h1>
-            <Tabs
-      id="controlled-tab-example"
-      activeKey={this.state.key}
-      onSelect={(k) => (this.setState({key: k}))}
-    >
-      <Tab eventKey="home" title="Home">
-      <h1>Content</h1>
-      </Tab>
-      <Tab eventKey="profile" title="Profile">
-      <h1>Content</h1>
-      </Tab>
-      <Tab eventKey="contact" title="Contact">
-      <h1>Content</h1>
-      </Tab>
-    </Tabs>
+            <SectionTitle title={this.state.currentSection}/>
+            {this.state.currentSection === "Catalog" && <Catalog/>}
         </div>      
     );
   }  

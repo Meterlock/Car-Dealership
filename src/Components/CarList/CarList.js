@@ -1,10 +1,14 @@
 import React from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
+import RequestModal from '../RequestModal/RequestModal';
+import OrderModal from '../OrderModal/OrderModal';
 
 class CarList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      showRequestModal: false,
+      showOrderModal: false
     };
   }
 
@@ -41,12 +45,12 @@ class CarList extends React.Component {
                         <Container>
                           <Row>
                             <Col>
-                              <Button variant="info" size="sm" block className="mb-1">Order</Button>
+                              <Button variant="info" size="sm" block className="mb-1" onClick={() => this.setState({showOrderModal: true})}>Order</Button>
                             </Col>
                           </Row>
                           <Row>
                             <Col>
-                            <Button variant="outline-warning" size="sm" block>Request</Button>
+                            <Button variant="outline-warning" size="sm" block onClick={() => this.setState({showRequestModal: true})}>Request</Button>
                             </Col>
                           </Row>
                           <Row>
@@ -62,6 +66,8 @@ class CarList extends React.Component {
                 </Col>
               </Row>
             </Container>
+            {this.state.showRequestModal && <RequestModal show={true} hide={() => this.setState({showRequestModal: false})}/>}
+            {this.state.showOrderModal && <OrderModal show={true} hide={() => this.setState({showOrderModal: false})}/>}
         </div>      
     );
   }  

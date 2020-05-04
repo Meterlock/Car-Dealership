@@ -3,7 +3,7 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import RequestModal from '../RequestModal/RequestModal';
 import OrderModal from '../OrderModal/OrderModal';
 
-class CarList extends React.Component {
+class CarListItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -73,4 +73,4 @@ class CarList extends React.Component {
   }  
 }
 
-export default CarList;
+export default CarListItem;

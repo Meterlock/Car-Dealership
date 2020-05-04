@@ -1,5 +1,5 @@
 import React from 'react';
-import {Modal, Button, Tabs, Tab, Form, Col} from 'react-bootstrap';
+import {Modal, Button, Tabs, Tab, Form, Col, Dropdown, DropdownButton} from 'react-bootstrap';
 import DatePicker from 'react-date-picker';
 
 class OrderModal extends React.Component {
@@ -52,7 +52,7 @@ class OrderModal extends React.Component {
                             <Form.Control as="select" onChange={(e) => this.setState({sex: e.target.value})}>
                                 <option></option>
                                 <option>Male</option>
-                                <option>Female</option>
+                                <option>Female</option><Form.Control placeholder="Search"></Form.Control>
                             </Form.Control>
                         </Form.Group>
                         <Form.Group as={Col}>
@@ -80,15 +80,27 @@ class OrderModal extends React.Component {
                             <Form.Control type="phone" onChange={(e) => this.setState({phone: e.target.value})}/>
                         </Form.Group>
                     </Form.Row>
-                    <Button onClick={() => alert(this.state.birthdate)}>ccc</Button>
                 </Tab>
                 <Tab eventKey="exist" title="Existing client">
+                    <Form.Row className="mt-5">
+                        <Form.Group as={Col}>
+                            <h3>Choose client:</h3>
+                        </Form.Group>
+                        <Form.Group as={Col}>
+                            <DropdownButton drop="down" title="Dropdown button" onSelect={(e) => alert(e)}>
+                                <Form.Control placeholder="Search" /*onChange={filter array of users}*/></Form.Control>
+                                <Dropdown.Item eventKey="1">Max</Dropdown.Item>
+                                <Dropdown.Item>Ben</Dropdown.Item>
+                                <Dropdown.Item>Kirill</Dropdown.Item>
+                            </DropdownButton>
+                        </Form.Group>
+                    </Form.Row>                
                 </Tab>
-            </Tabs>
+                </Tabs>
             </Modal.Body>
-            {/*<Modal.Footer>
-                <Button>Submit</Button>
-            </Modal.Footer>*/}
+            <Modal.Footer>
+                <Button onClick={() => this.state.key === "new" ? alert(this.state.birthdate) : alert()}>Submit</Button>
+            </Modal.Footer>
         </Modal>   
     );
   }  

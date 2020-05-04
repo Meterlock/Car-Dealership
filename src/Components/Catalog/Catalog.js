@@ -1,7 +1,8 @@
 import React from 'react';
 import {Tab, Tabs} from 'react-bootstrap';
 import CarFilter from '../CarFilter/CarFilter';
-import CarList from '../CarList/CarList';
+import CarListItem from '../CarListItem/CarListItem';
+import RequestBody from '../RequestBody/RequestBody';
 
 class Catalog extends React.Component {
   constructor(props) {
@@ -19,10 +20,11 @@ class Catalog extends React.Component {
                 onSelect={(k) => (this.setState({key: k}))}>
                 <Tab eventKey="stock" title="Cars in stock">
                     <CarFilter free={true} />
-                    <CarList />
+                    <CarListItem />
                 </Tab>
                 <Tab eventKey="request" title="Configurate a request">
                     <CarFilter free={false} />
+                    <RequestBody />
                 </Tab>
             </Tabs>
         </div>      

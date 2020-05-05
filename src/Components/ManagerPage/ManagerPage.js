@@ -2,6 +2,8 @@ import React from 'react';
 import Header from '../Header/Header';
 import SectionTitle from '../SectionTitle/SectionTitle';
 import Catalog from '../Catalog/Catalog';
+import Orders from '../Orders/Orders';
+import Clients from '../Clients/Clients';
 
 class ManagerPage extends React.Component {
   constructor(props) {
@@ -25,7 +27,9 @@ class ManagerPage extends React.Component {
                 logOutCallback={() => this.props.logOutCallback()}
                 clickMenuCallback= {(i) => this.clickMenuItem(i)} />
             <SectionTitle title={this.state.currentSection}/>
-            {this.state.currentSection === "Catalog" && <Catalog/>}
+            {this.state.currentSection === "Catalog" && <Catalog />}
+            {this.state.currentSection === "Orders" && <Orders />}
+            {this.state.currentSection === "Clients" && <Clients />}
         </div>      
     );
   }  

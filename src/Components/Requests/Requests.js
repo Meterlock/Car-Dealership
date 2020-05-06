@@ -1,8 +1,8 @@
 import React from 'react';
-import OrderItem from '../OrderItem/OrderItem';
+import RequestItem from '../RequestItem/RequestItem';
 import OrderRequestFilter from '../OrderRequestFilter/OrderRequestFilter';
 
-class Orders extends React.Component {
+class Requests extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,10 +13,10 @@ class Orders extends React.Component {
     return (
         <div>
             <OrderRequestFilter />
-            <OrderItem />
+            <RequestItem />
         </div>      
     );
   }  
 }
 
-export default Orders;
+export default Requests;

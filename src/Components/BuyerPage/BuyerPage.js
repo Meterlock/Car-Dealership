@@ -8,7 +8,7 @@ class BuyerPage extends React.Component {
     };
   }
 
-  menuItems = ["supliers", "Clients"];
+  menuItems = ["Requests", "Suppliers"];
 
   clickMenuItem() {
     alert("menu click");

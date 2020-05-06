@@ -4,6 +4,7 @@ import SectionTitle from '../SectionTitle/SectionTitle';
 import Catalog from '../Catalog/Catalog';
 import Orders from '../Orders/Orders';
 import Clients from '../Clients/Clients';
+import Requests from '../Requests/Requests';
 
 class ManagerPage extends React.Component {
   constructor(props) {
@@ -30,6 +31,7 @@ class ManagerPage extends React.Component {
             {this.state.currentSection === "Catalog" && <Catalog />}
             {this.state.currentSection === "Orders" && <Orders />}
             {this.state.currentSection === "Clients" && <Clients />}
+            {this.state.currentSection === "Delivery requests" && <Requests />}
         </div>      
     );
   }  

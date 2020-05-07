@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import InfoModal from '../InfoModal/InfoModal';
 import CarListItem from '../CarListItem/CarListItem';
+import SupplierInfo from '../SupplierInfo/SupplierInfo';
 
 class RequestItem extends React.Component {
   constructor(props) {
@@ -62,6 +63,7 @@ class RequestItem extends React.Component {
               </Row>
             </Container>
             {this.state.showCar && <InfoModal header="Car Info" body={<CarListItem />} show={true} hide={() => this.setState({showCar: false})}/>}
+            {this.state.showSupplier && <InfoModal header="Supplier Info" body={<SupplierInfo />} show={true} hide={() => this.setState({showSupplier: false})}/>}
         </div>      
     );
   }  

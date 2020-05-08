@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../Header/Header';
 import SectionTitle from '../SectionTitle/SectionTitle';
 import WorkOrders from '../WorkOrders/WorkOrders';
+import Service from '../Service/Service';
 
 class ServiceManPage extends React.Component {
   constructor(props) {
@@ -26,6 +27,7 @@ class ServiceManPage extends React.Component {
                 clickMenuCallback= {(i) => this.clickMenuItem(i)} />
             <SectionTitle title={this.state.currentSection}/>
             {this.state.currentSection === "Work orders" && <WorkOrders />}
+            {this.state.currentSection === "Service" && <Service />}
         </div>      
     );
   }  

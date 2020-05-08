@@ -52,7 +52,7 @@ class OrderModal extends React.Component {
                             <Form.Control as="select" onChange={(e) => this.setState({sex: e.target.value})}>
                                 <option></option>
                                 <option>Male</option>
-                                <option>Female</option><Form.Control placeholder="Search"></Form.Control>
+                                <option>Female</option>
                             </Form.Control>
                         </Form.Group>
                         <Form.Group as={Col}>

@@ -10,7 +10,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userRole: 2
+      userRole: 1
     };
   }
 
@@ -22,7 +22,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div id="general-div">
+      <div id="general-div">        
         {this.state.userRole === 0 && <LoginPage />}
         {this.state.userRole === 1 && <ManagerPage logOutCallback={() => this.logOut()} username={this.username} />}
         {this.state.userRole === 2 && <ServiceManPage logOutCallback={() => this.logOut()} username={this.username} />}

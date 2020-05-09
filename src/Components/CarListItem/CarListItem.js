@@ -10,6 +10,7 @@ class CarListItem extends React.Component {
       showRequestModal: false,
       showOrderModal: false
     };
+    this.car = props.car;
   }
 
   render() {
@@ -21,23 +22,23 @@ class CarListItem extends React.Component {
                 <Col xl={10}>
                   <Container>
                     <Row>
-                      <Col>BMW 3er Luxury</Col>
-                      <Col xl={1}>31000$</Col>
+                      <Col>{this.car.model.brand.name + " " + this.car.model.name}</Col>
+                      <Col xl={2}>${this.car.price}</Col>
                     </Row>
                     <Row>
                       <Col>
                         <Container>
                           <Row>
-                            <Col xl={4}>Volume: 2500 cm3</Col>
-                            <Col>Gearbox: Manual</Col>
+                            <Col xl={4}>Volume: {this.car.engine.volume}L</Col>
+                            <Col>Gearbox: {this.car.gearbox.name}</Col>
                           </Row>
                           <Row>
-                            <Col xl={4}>Petrol: Diesel</Col>
-                            <Col>Body: Sedan</Col>
+                            <Col xl={4}>Petrol: {this.car.engine.type.name}</Col>
+                            <Col>Body: {this.car.bodyType.name}</Col>
                           </Row>
                           <Row>
-                            <Col xl={4}>Power: 250hp</Col>
-                            <Col>Color: Red</Col>
+                            <Col xl={4}>Power: {this.car.engine.power}hp</Col>
+                            <Col>Color: {this.car.color.name}</Col>
                           </Row>
                         </Container>
                       </Col>
@@ -54,13 +55,13 @@ class CarListItem extends React.Component {
                             </Col>
                           </Row>
                           <Row>
-                            <Col>Amount: 10</Col>
+                            <Col>Amount: {this.car.amount}</Col>
                           </Row>
                         </Container>
                       </Col>
                     </Row>
                     <Row>
-                      <Col>Supplier: BMW AG, Munich, Germany</Col>
+                      <Col>Supplier: {this.car.model.brand.country.name}</Col>
                     </Row>
                   </Container>
                 </Col>

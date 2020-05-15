@@ -11,12 +11,13 @@ class OrderRequestFilter extends React.Component {
   render() {
     return (
         <div>
-            <Container>
+            <Container className="mb-3">
                 <Row className="d-flex align-items-center">
                     <Col>
-                        <Form.Control placeholder="Search" /*onChange={filter array of users}*/></Form.Control>
+                        <Form.Label className="mb-0">Search</Form.Label>
+                        <Form.Control placeholder="Start typing" /*onChange={filter array of users}*/></Form.Control>
                     </Col>
-                    <Col>
+                    <Col className="pt-4">
                         <Form.Check type="switch" id="custom-switch" label="Created by me" onChange={(e) => alert(e.target.checked)} />
                     </Col>
                     <Col>

@@ -1,17 +1,22 @@
 import React from 'react';
 import Header from '../Header/Header';
+import SectionTitle from '../SectionTitle/SectionTitle';
+import Suppliers from '../Suppliers/Suppliers';
+import Employees from '../Employees/Employees';
+import Statistics from '../Statistics/Statistics';
 
 class DirectorPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentSection: this.menuItems[0]
     };
   }
 
-  menuItems = ["I", "am", "Director"];
+  menuItems = ["Statistics", "Employees", "Suppliers"];
 
-  clickMenuItem() {
-    alert("menu click");
+  clickMenuItem(itemName) {
+    this.setState({currentSection: itemName});
   }
 
   render() {
@@ -20,10 +25,11 @@ class DirectorPage extends React.Component {
             <Header items={this.menuItems}
                 username={this.props.username}
                 logOutCallback={() => this.props.logOutCallback()} 
-                clickMenuCallback= {() => this.clickMenuItem()} />
-            <h1>The</h1>
-            <h1>Other</h1>
-            <h1>Content</h1>
+                clickMenuCallback= {(i) => this.clickMenuItem(i)} />
+            <SectionTitle title={this.state.currentSection}/>
+            {this.state.currentSection === "Statistics" && <Statistics />}
+            {this.state.currentSection === "Suppliers" && <Suppliers />}
+            {this.state.currentSection === "Employees" && <Employees />}
         </div>      
     );
   }  

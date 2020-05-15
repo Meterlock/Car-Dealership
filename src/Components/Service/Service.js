@@ -20,30 +20,29 @@ class Service extends React.Component {
                         <h4>Create new Work Order</h4>
                     </Col>
                 </Row>
-                <Row>
+                <Row className="mb-5">
                     <Col className="pre-scrollable">
                         <Form.Row>
-                            <Form.Group as={Col}>
-                                <Form.Label>Firstname</Form.Label>
+                            <Form.Group as={Col} className="mb-2">
+                                <Form.Label className="mb-0">Firstname</Form.Label>
                                 <Form.Control onChange={(e) => this.setState({firstname: e.target.value})}/>
                             </Form.Group>
                         </Form.Row>
                         <Form.Row>
-                            <Form.Group as={Col}>
-                                <Form.Label>Surname</Form.Label>
+                            <Form.Group as={Col} className="mb-2">
+                                <Form.Label className="mb-0">Surname</Form.Label>
                                 <Form.Control onChange={(e) => this.setState({surname: e.target.value})}/>
                             </Form.Group>
                         </Form.Row>
                         <Form.Row>
-                            <Form.Group as={Col}>
-                                <Form.Label>Phone</Form.Label>
+                            <Form.Group as={Col} className="mb-2">
+                                <Form.Label className="mb-0">Phone</Form.Label>
                                 <Form.Control onChange={(e) => this.setState({phone: e.target.value})}/>
                             </Form.Group>
                         </Form.Row>
                         <Form.Row>
                             <Form.Group as={Col}>
-                                <Form.Label>Available works</Form.Label>
-                                <DropdownButton drop="down" title="Available works" onSelect={(e) => alert(e)}> {/* set max-height */}
+                                <DropdownButton variant="info" drop="down" title="Available works" onSelect={(e) => alert(e)}> {/* set max-height */}
                                     <Form.Control placeholder="Search" /*onChange={filter array of users}*/></Form.Control>
                                     <Dropdown.Item eventKey="1">Max</Dropdown.Item>
                                     <Dropdown.Item>Ben</Dropdown.Item>
@@ -54,24 +53,27 @@ class Service extends React.Component {
                     </Col>
                     <Col>
                         <Toast /*show={showA}*/ onClose={() => alert("Close")}>
-                            <Toast.Header><strong className="mr-auto">300$</strong></Toast.Header>
-                            <Toast.Body>Woohoo, you're reading this text in a Toast!</Toast.Body>
+                            <Toast.Header><strong className="mr-auto">50$</strong></Toast.Header>
+                            <Toast.Body>Engine oil replacement</Toast.Body>
                         </Toast>
                         <Toast /*show={showA}*/ onClose={() => alert("Close")}>
-                            <Toast.Header><strong className="mr-auto">300$</strong></Toast.Header>
-                            <Toast.Body>Woohoo, you're reading this text in a Toast!</Toast.Body>
+                            <Toast.Header><strong className="mr-auto">100$</strong></Toast.Header>
+                            <Toast.Body>Coolant replacement</Toast.Body>
                         </Toast>
                         <Toast /*show={showA}*/ onClose={() => alert("Close")}>
-                            <Toast.Header><strong className="mr-auto">300$</strong></Toast.Header>
-                            <Toast.Body>Woohoo, you're reading this text in a Toast!</Toast.Body>
+                            <Toast.Header><strong className="mr-auto">20$</strong></Toast.Header>
+                            <Toast.Body>Body polishing</Toast.Body>
                         </Toast>
                     </Col>
                 </Row>
-                <Row>
-                    <Col>Total: 1300$</Col>
-                    <Col lg={2}>
-                        <Button variant="outline-warning" size="sm" block onClick={() => alert("Submited!")}>Submit</Button>
+                <Row className="pb-4 d-flex align-items-center">
+                    <Col lg={6} className="text-right">
+                        <h5 className="mb-0">Total: 170$</h5>
                     </Col>
+                    <Col lg={2}>
+                        <Button variant="success" size="sm" block onClick={() => alert("Submited!")}>Submit</Button>
+                    </Col>
+                    <Col></Col>
                 </Row>
             </Container>
         </div>      

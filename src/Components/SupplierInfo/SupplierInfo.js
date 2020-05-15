@@ -6,25 +6,27 @@ class SupplierInfo extends React.Component {
     super(props);
     this.state = {
     };
+    this.supplier = props.supplier;
   }
 
   render() {
     return (
         <div>
-            <Container>
+            <Container className="border border-secondary mb-1">
+                {/* image */}
                 <Row>
-                    <h3>Daimler Group</h3>
+                    <h4 className="mx-2">{this.supplier.name}</h4>
                 </Row>
-                <Row>
+                <Row className="mb-2">
                     <Container>
                         <Row>
                             <Col>
-                                <p>ID: 12424dsad</p>
-                                <p>Address: LalaCity, Germany</p>
+                                <p className="mb-0">ID: {this.supplier.idn}</p>
+                                <p className="mb-0">Address: {this.supplier.address}</p>
                             </Col>
                             <Col>
-                                <p>Phone: +124234</p>
-                                <p>Email: fsdf@fsdf.cdf</p>
+                                <p className="mb-0">Phone: {this.supplier.phone}</p>
+                                <p className="mb-0">Email: {this.supplier.email}</p>
                             </Col>
                         </Row>
                     </Container>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button, Image } from 'react-bootstrap';
 import RequestModal from '../RequestModal/RequestModal';
 import OrderModal from '../OrderModal/OrderModal';
 
@@ -16,18 +16,21 @@ class CarListItem extends React.Component {
   render() {
     return (
         <div>
-            <Container>
+            <Container className="border border-secondary mb-1">
               <Row>
-                <Col>{/*photo place*/}</Col>
+                <Col className="d-flex align-items-center">
+                  <Image src={this.car.image} fluid />
+                </Col>
                 <Col xl={10}>
                   <Container>
                     <Row>
-                      <Col>{this.car.model.brand.name + " " + this.car.model.name}</Col>
-                      <Col xl={2}>${this.car.price}</Col>
-                    </Row>
-                    <Row>
                       <Col>
                         <Container>
+                          <Row>
+                            <Col className="px-0">
+                              <h5>{this.car.model.brand.name + " " + this.car.model.name}</h5>
+                            </Col>
+                          </Row>
                           <Row>
                             <Col xl={4}>Volume: {this.car.engine.volume}L</Col>
                             <Col>Gearbox: {this.car.gearbox.name}</Col>
@@ -40,28 +43,31 @@ class CarListItem extends React.Component {
                             <Col xl={4}>Power: {this.car.engine.power}hp</Col>
                             <Col>Color: {this.car.color.name}</Col>
                           </Row>
-                        </Container>
-                      </Col>
-                      <Col xl={3}>
-                        <Container>
                           <Row>
-                            <Col>
-                              <Button variant="info" size="sm" block className="mb-1" onClick={() => this.setState({showOrderModal: true})}>Order</Button>
-                            </Col>
-                          </Row>
-                          <Row>
-                            <Col>
-                            <Button variant="outline-warning" size="sm" block onClick={() => this.setState({showRequestModal: true})}>Request</Button>
-                            </Col>
-                          </Row>
-                          <Row>
-                            <Col>Amount: {this.car.amount}</Col>
+                            <Col className="px-0">Supplier: {this.car.model.brand.country.name}</Col>
                           </Row>
                         </Container>
                       </Col>
-                    </Row>
-                    <Row>
-                      <Col>Supplier: {this.car.model.brand.country.name}</Col>
+                      <Col xl={3} className="d-flex align-items-center">
+                        <Container className="px-4">
+                          <Row className="mb-1">
+                            <Col className="text-center">${this.car.price}</Col>
+                          </Row>
+                          <Row className="mb-2">
+                            <Col>
+                              <Button variant="info" size="sm" block onClick={() => this.setState({showOrderModal: true})}>Order</Button>
+                            </Col>
+                          </Row>
+                          <Row className="mb-1">
+                            <Col>
+                            <Button variant="success" size="sm" block onClick={() => this.setState({showRequestModal: true})}>Request</Button>
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col className="text-center">Amount: {this.car.amount}</Col>
+                          </Row>
+                        </Container>
+                      </Col>
                     </Row>
                   </Container>
                 </Col>

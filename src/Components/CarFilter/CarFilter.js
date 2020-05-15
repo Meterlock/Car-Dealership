@@ -61,7 +61,7 @@ class CarFilter extends React.Component {
                         <Form.Label className="mb-0">Gearbox</Form.Label>
                         <Form.Control as="select" onChange={(e) => alert(e.target.value)}>
                             <option></option>
-                            <option>auto</option>
+                            <option>Automatic</option>
                             <option>cvvt</option>
                         </Form.Control>
                     </Form.Group>}
@@ -71,7 +71,7 @@ class CarFilter extends React.Component {
                         <Form.Control as="select" onChange={(e) => alert(e.target.value)}>
                             <option></option>
                             <option>benzin</option>
-                            <option>diesel</option>
+                            <option>Diesel</option>
                         </Form.Control>
                     </Form.Group>}
                     {!this.state.isFree &&

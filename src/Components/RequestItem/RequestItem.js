@@ -52,7 +52,7 @@ class RequestItem extends React.Component {
                           </Row>
                           <Row className="mb-1">
                             <Col className="px-5 mx-5">
-                            {this.state.showStatusBtn && <Button variant="outline-warning" size="sm" block onClick={() => alert("Resolved!")}>{this.request.btn}</Button>}
+                            {/*this.state.showStatusBtn && <Button variant="outline-warning" size="sm" block onClick={() => alert("Resolved!")}>{this.request.btn}</Button>*/}
                             </Col>
                           </Row>
                           <Row>

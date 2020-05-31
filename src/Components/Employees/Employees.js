@@ -16,19 +16,19 @@ class Employees extends React.Component {
           salary: "1000"
         },
         {
-            name: "Kirill Alexeenko",
+            name: "Denis Kaminsky",
             birthday: "01.01.2020",
             email: "myemail@gmail.com",
             phone: "+1 324 34324324",
-            role: "Manager",
+            role: "Serviceman",
             salary: "1000"
         },
         {
-            name: "Kirill Alexeenko",
+            name: "Olle Lukoye",
             birthday: "01.01.2020",
             email: "myemail@gmail.com",
             phone: "+1 324 34324324",
-            role: "Manager",
+            role: "Purchase specialist",
             salary: "1000"
         },
         {

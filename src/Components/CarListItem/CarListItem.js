@@ -10,7 +10,6 @@ class CarListItem extends React.Component {
       showRequestModal: false,
       showOrderModal: false
     };
-    this.car = props.car;
   }
 
   render() {
@@ -19,7 +18,7 @@ class CarListItem extends React.Component {
             <Container className="border border-secondary mb-1">
               <Row>
                 <Col className="d-flex align-items-center">
-                  <Image src={this.car.image} fluid />
+                  <Image src={this.props.car.image} fluid />
                 </Col>
                 <Col xl={10}>
                   <Container>
@@ -28,30 +27,30 @@ class CarListItem extends React.Component {
                         <Container>
                           <Row>
                             <Col className="px-0">
-                              <h5>{this.car.model.brand.name + " " + this.car.model.name}</h5>
+                              <h5>{this.props.car.model.brand.name + " " + this.props.car.model.name + " " + this.props.car.complectation.name}</h5>
                             </Col>
                           </Row>
                           <Row>
-                            <Col xl={4}>Volume: {this.car.engine.volume}L</Col>
-                            <Col>Gearbox: {this.car.gearbox.name}</Col>
+                            <Col xl={4}>Volume: {this.props.car.engine.volume}L</Col>
+                            <Col>Gearbox: {this.props.car.gearbox.name}</Col>
                           </Row>
                           <Row>
-                            <Col xl={4}>Petrol: {this.car.engine.type.name}</Col>
-                            <Col>Body: {this.car.bodyType.name}</Col>
+                            <Col xl={4}>Petrol: {this.props.car.engine.type.name}</Col>
+                            <Col>Body: {this.props.car.bodyType.name}</Col>
                           </Row>
                           <Row>
-                            <Col xl={4}>Power: {this.car.engine.power}hp</Col>
-                            <Col>Color: {this.car.color.name}</Col>
+                            <Col xl={4}>Power: {this.props.car.engine.power}hp</Col>
+                            <Col>Color: {this.props.car.color.name}</Col>
                           </Row>
                           <Row>
-                            <Col className="px-0">Supplier: {this.car.model.brand.country.name}</Col>
+                            <Col className="px-0">Supplier: {this.props.car.model.brand.country.name}</Col>
                           </Row>
                         </Container>
                       </Col>
                       <Col xl={3} className="d-flex align-items-center">
                         <Container className="px-4">
                           <Row className="mb-1">
-                            <Col className="text-center">${this.car.price}</Col>
+                            <Col className="text-center">${this.props.car.price}</Col>
                           </Row>
                           <Row className="mb-2">
                             <Col>
@@ -64,7 +63,7 @@ class CarListItem extends React.Component {
                             </Col>
                           </Row>
                           <Row>
-                            <Col className="text-center">Amount: {this.car.amount}</Col>
+                            <Col className="text-center">Amount: {this.props.car.amount}</Col>
                           </Row>
                         </Container>
                       </Col>

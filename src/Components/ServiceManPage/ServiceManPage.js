@@ -12,7 +12,7 @@ class ServiceManPage extends React.Component {
     };
   }
 
-  menuItems = ["Service", "Work orders"];
+  menuItems = ["Service", "Work Orders"];
 
   clickMenuItem(itemName) {
     this.setState({currentSection: itemName});
@@ -26,7 +26,7 @@ class ServiceManPage extends React.Component {
                 logOutCallback={() => this.props.logOutCallback()} 
                 clickMenuCallback= {(i) => this.clickMenuItem(i)} />
             <SectionTitle title={this.state.currentSection}/>
-            {this.state.currentSection === "Work orders" && <WorkOrders />}
+            {this.state.currentSection === "Work Orders" && <WorkOrders />}
             {this.state.currentSection === "Service" && <Service />}
         </div>      
     );

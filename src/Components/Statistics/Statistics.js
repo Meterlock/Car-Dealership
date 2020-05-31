@@ -15,7 +15,29 @@ class Statistics extends React.Component {
           {date: "05.05", value: 8},
           {date: "06.05", value: 4},
           {date: "07.05", value: 2},
-          {date: "08.05", value: 9}
+          {date: "08.05", value: 9},
+          {date: "09.05", value: 5},
+          {date: "10.05", value: 7},
+          {date: "11.05", value: 8},
+          {date: "12.05", value: 10},
+          {date: "13.05", value: 8},
+          {date: "14.05", value: 11},
+          {date: "15.05", value: 5},
+          {date: "16.05", value: 4},
+          {date: "17.05", value: 6},
+          {date: "18.05", value: 3},
+          {date: "19.05", value: 4},
+          {date: "20.05", value: 5},
+          {date: "21.05", value: 8},
+          {date: "22.05", value: 4},
+          {date: "23.05", value: 8},
+          {date: "24.05", value: 5},
+          {date: "25.05", value: 4},
+          {date: "26.05", value: 7},
+          {date: "27.05", value: 8},
+          {date: "28.05", value: 7},
+          {date: "29.05", value: 8},
+          {date: "30.05", value: 10}
         ]
     };
   }

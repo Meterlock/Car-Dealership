@@ -14,7 +14,7 @@ class ManagerPage extends React.Component {
     };
   }
 
-  menuItems = ["Catalog", "Clients", "Orders", "Delivery requests"];
+  menuItems = ["Catalog", "Clients", "Orders", "Delivery Requests"];
 
   clickMenuItem(itemName) {
     this.setState({currentSection: itemName});
@@ -31,7 +31,7 @@ class ManagerPage extends React.Component {
             {this.state.currentSection === "Catalog" && <Catalog />}
             {this.state.currentSection === "Orders" && <Orders />}
             {this.state.currentSection === "Clients" && <Clients />}
-            {this.state.currentSection === "Delivery requests" && <Requests />}
+            {this.state.currentSection === "Delivery Requests" && <Requests />}
         </div>      
     );
   }  

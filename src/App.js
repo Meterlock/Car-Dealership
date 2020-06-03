@@ -13,7 +13,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userRole: 1
+      userRole: 2
     };
   }
 
@@ -40,7 +40,7 @@ class App extends React.Component {
         withCredentials: true
       }
     )
-    .then(response => this.setState({userRole: 1}))
+    .then(response => this.setState({userRole: 2}))
     .catch(error => error.response.status === 401 ? alert("Wrong credentials!") : alert("Bad request"));
   }
 

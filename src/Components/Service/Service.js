@@ -1,14 +1,50 @@
 import React from 'react';
 import {Form, Row, Col, Container, Button, Dropdown, DropdownButton, Toast} from 'react-bootstrap';
+import {BASE_URL} from '../../vars';
+const axios = require('axios');
 
 class Service extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+        works: [],
+        selectedWorks: [],
         firstname: "",
         surname: "",
         phone: ""
     };
+    this.works = [];
+  }
+
+  componentDidMount() {
+    axios.get(BASE_URL + "/api/Work",
+      {
+        withCredentials: true
+      }
+    )
+    .then(response => {this.works = response.data.data; this.setState({works: this.works})})
+    .catch(() => alert("Bad request"));
+  }
+
+  filterWorks(search) {
+    this.setState({works: this.works.filter(item => item.name.toLowerCase().includes(search))})
+  }
+
+  addWork(workId) {
+      let tmp = this.state.selectedWorks;
+      if (!tmp.includes(workId)){
+        tmp.push(workId);
+      }      
+      this.setState({selectedWorks: tmp});
+  }
+
+  deleteWork(workId) {
+    let tmp = this.state.selectedWorks;
+    const index = tmp.indexOf(workId);
+    if (index > -1) {
+      tmp.splice(index, 1);
+    }
+    this.setState({selectedWorks: tmp});
   }
 
   render() {
@@ -42,28 +78,25 @@ class Service extends React.Component {
                         </Form.Row>
                         <Form.Row>
                             <Form.Group as={Col}>
-                                <DropdownButton variant="info" drop="down" title="Available works" onSelect={(e) => alert(e)}> {/* set max-height */}
-                                    <Form.Control placeholder="Search" /*onChange={filter array of users}*/></Form.Control>
-                                    <Dropdown.Item eventKey="1">Max</Dropdown.Item>
-                                    <Dropdown.Item>Ben</Dropdown.Item>
-                                    <Dropdown.Item>Kirill</Dropdown.Item>
+                                <DropdownButton variant="info" drop="up" title="Available works" onSelect={(e) => this.addWork(e)}>
+                                    <div className="ml-3 mr-1">
+                                        <Form.Control placeholder="Search" onChange={(e) => this.filterWorks(e.target.value)}></Form.Control>
+                                    </div>
+                                    {this.state.works.map((item) => <Dropdown.Item eventKey={item.id}>{item.name}</Dropdown.Item>)}
                                 </DropdownButton>
                             </Form.Group>
                         </Form.Row>
                     </Col>
                     <Col>
-                        <Toast /*show={showA}*/ onClose={() => alert("Close")}>
-                            <Toast.Header><strong className="mr-auto">50$</strong></Toast.Header>
-                            <Toast.Body>Engine oil replacement</Toast.Body>
-                        </Toast>
-                        <Toast /*show={showA}*/ onClose={() => alert("Close")}>
-                            <Toast.Header><strong className="mr-auto">100$</strong></Toast.Header>
-                            <Toast.Body>Coolant replacement</Toast.Body>
-                        </Toast>
-                        <Toast /*show={showA}*/ onClose={() => alert("Close")}>
-                            <Toast.Header><strong className="mr-auto">20$</strong></Toast.Header>
-                            <Toast.Body>Body polishing</Toast.Body>
-                        </Toast>
+                        {this.state.selectedWorks.map((item) => {
+                            let obj = this.works.find(work => work.id == item);
+                            return (
+                                <Toast onClose={() => this.deleteWork(item)}>
+                                    <Toast.Header><strong className="mr-auto">${obj.price}</strong></Toast.Header>
+                                    <Toast.Body>{obj.name}</Toast.Body>
+                                </Toast>
+                            )
+                        })}
                     </Col>
                 </Row>
                 <Row className="pb-4 d-flex align-items-center">

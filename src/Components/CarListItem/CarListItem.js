@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Row, Col, Button, Image } from 'react-bootstrap';
 import RequestModal from '../RequestModal/RequestModal';
 import OrderModal from '../OrderModal/OrderModal';
+import {BASE_URL} from '../../vars';
 
 class CarListItem extends React.Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class CarListItem extends React.Component {
             <Container className="border border-secondary mb-1">
               <Row>
                 <Col className="d-flex align-items-center">
-                  <Image src={this.props.car.image} fluid />
+                  <Image src={BASE_URL + `/api/CarStock/Photo/Main/${this.props.car.model.id}_${this.props.car.color.id}_${this.props.car.bodyType.id}`} fluid />
                 </Col>
                 <Col xl={10}>
                   <Container>

@@ -10,7 +10,6 @@ class Catalog extends React.Component {
     super(props);
     this.state = {
         key: "stock",
-        cars: [],
         filteredCars: [],
         isCarsLoaded: false,
         isError: false,

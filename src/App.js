@@ -47,7 +47,7 @@ class App extends React.Component {
   render() {
     return (
       <div id="general-div">
-        {this.state.userRole === 0 && <LoginPage logInCallback={(email, password) => this.logIn("kalexeenko@autodealer.com", "1234567")} />}
+        {this.state.userRole === 0 && <LoginPage logInCallback={(email, password) => this.logIn("iivanov@autodealer.com", "1234567")} />}
         {this.state.userRole === 1 && <ManagerPage logOutCallback={() => this.logOut()} username={this.username} />}
         {this.state.userRole === 2 && <ServiceManPage logOutCallback={() => this.logOut()} username={this.username} />}
         {this.state.userRole === 3 && <BuyerPage logOutCallback={() => this.logOut()} username={this.username} />}

@@ -47,6 +47,53 @@ class Service extends React.Component {
     this.setState({selectedWorks: tmp});
   }
 
+  getTotalCost() {
+      let cost = 0;
+      this.state.selectedWorks.forEach((item) => {
+        let obj = this.works.find(work => work.id == item);
+        cost += obj.price;
+      });
+      return cost;
+  }
+
+  checkInputs() {
+        let regexPhone = /^[0-9\(\)\-\+ ]{6,}$/;
+        if (this.state.firstname.trim() == "" ||
+            this.state.surname.trim() == "" ||
+            this.state.phone.trim() == "" ||
+            !regexPhone.test(this.state.phone)) {
+            return false;
+        }
+        return true;
+  }
+
+  createWorkOrder() {      
+    if (!this.checkInputs()) {
+        alert("All fields should be filled!");
+        return;
+    }
+    if (this.state.selectedWorks.length == 0) {
+        alert("No works selected!");
+        return;
+    }
+    axios.post(BASE_URL + "/api/WorkOrder/Create",
+        {
+            client: {
+                firstName: this.state.firstname.trim(),
+                lastName: this.state.surname.trim(),
+                phone: this.state.phone.trim()
+            },
+            worksIds: this.state.selectedWorks.map((item) => parseInt(item))
+        },
+        { withCredentials: true }
+    )
+    .then(() => {
+        alert("Work Order was successfully created!"); 
+        this.setState({firstname: "", surname: "", phone: "", selectedWorks: []});
+    })
+    .catch(() => alert("Bad request"));
+  }
+
   render() {
     return (
         <div>
@@ -61,19 +108,19 @@ class Service extends React.Component {
                         <Form.Row>
                             <Form.Group as={Col} className="mb-2">
                                 <Form.Label className="mb-0">Firstname</Form.Label>
-                                <Form.Control onChange={(e) => this.setState({firstname: e.target.value})}/>
+                                <Form.Control value={this.state.firstname} onChange={(e) => this.setState({firstname: e.target.value})}/>
                             </Form.Group>
                         </Form.Row>
                         <Form.Row>
                             <Form.Group as={Col} className="mb-2">
                                 <Form.Label className="mb-0">Surname</Form.Label>
-                                <Form.Control onChange={(e) => this.setState({surname: e.target.value})}/>
+                                <Form.Control value={this.state.surname} onChange={(e) => this.setState({surname: e.target.value})}/>
                             </Form.Group>
                         </Form.Row>
                         <Form.Row>
                             <Form.Group as={Col} className="mb-2">
                                 <Form.Label className="mb-0">Phone</Form.Label>
-                                <Form.Control onChange={(e) => this.setState({phone: e.target.value})}/>
+                                <Form.Control value={this.state.phone} onChange={(e) => this.setState({phone: e.target.value})}/>
                             </Form.Group>
                         </Form.Row>
                         <Form.Row>
@@ -101,15 +148,15 @@ class Service extends React.Component {
                 </Row>
                 <Row className="pb-4 d-flex align-items-center">
                     <Col lg={6} className="text-right">
-                        <h5 className="mb-0">Total: 170$</h5>
+                        <h5 className="mb-0">Total: ${this.getTotalCost()}</h5>
                     </Col>
                     <Col lg={2}>
-                        <Button variant="success" size="sm" block onClick={() => alert("Submited!")}>Submit</Button>
+                        <Button variant="success" size="sm" block onClick={() => this.createWorkOrder()}>Submit</Button>
                     </Col>
                     <Col></Col>
                 </Row>
             </Container>
-        </div>      
+        </div>
     );
   }  
 }

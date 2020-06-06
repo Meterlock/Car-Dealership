@@ -73,8 +73,8 @@ class CarListItem extends React.Component {
                 </Col>
               </Row>
             </Container>
-            {this.state.showRequestModal && <RequestModal show={true} hide={() => this.setState({showRequestModal: false})}/>}
-            {this.state.showOrderModal && <OrderModal show={true} hide={() => this.setState({showOrderModal: false})}/>}
+            {this.state.showRequestModal && <RequestModal car={this.props.car} show={true} hide={() => this.setState({showRequestModal: false})}/>}
+            {this.state.showOrderModal && <OrderModal config={this.props.config} car={this.props.car.id} show={true} hide={() => this.setState({showOrderModal: false})}/>}
         </div>      
     );
   }  

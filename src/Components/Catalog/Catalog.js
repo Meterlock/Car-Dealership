@@ -27,7 +27,7 @@ class Catalog extends React.Component {
     )
     .then(response => {this.cars = response.data.data; this.setState({filteredCars: this.cars})})
     .catch(() => this.setState({isError: true}))
-    .then(() => this.setState({isCarsLoaded: true}));
+    .then(() => this.setState({isCarsLoaded: true}));    
   }
 
   filterCars(filterObj) {
@@ -82,13 +82,13 @@ class Catalog extends React.Component {
                     {this.state.isError && <h3>An error with network occurred...</h3>}
                     {!this.state.isError && this.state.isCarsLoaded && 
                       this.state.filteredCars.length == 0 && <h3>No items found. Please, change the filter</h3>}
-                    {this.state.isCarsLoaded && this.state.filteredCars.map((item) => <CarListItem car={item} key={item.id} />)}
+                    {this.state.isCarsLoaded && this.state.filteredCars.map((item) => <CarListItem config={false} car={item} key={item.id} />)}
                 </Tab>
                 <Tab eventKey="request" title="Configurate a request" className="mx-4">
                     <CarFilter free={false} configureFunc={(obj) => this.configure(obj)} />
                     {this.state.step ?
                       <h2>Waiting for configuration...</h2> :
-                      <CarListItem car={this.state.configuredCar} />}
+                      <CarListItem config={true} car={this.state.configuredCar} />}
                 </Tab>
             </Tabs>
         </div>      

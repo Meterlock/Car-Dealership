@@ -5,7 +5,6 @@ class WorkOrderItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        showStatusBtn: props.workorder.status.id == 1 ? true : false
     };
   }
 
@@ -15,7 +14,7 @@ class WorkOrderItem extends React.Component {
         <Popover.Title as="h3">Works:</Popover.Title>
         <Popover.Content>
           {works.map((item, index) => 
-            <p className="my-0">{`${index + 1}) ${item.name} - $${item.price}`}</p>
+            <p className="my-0" key={index}>{`${index + 1}) ${item.name} - $${item.price}`}</p>
           )}
         </Popover.Content>
       </Popover>
@@ -36,7 +35,7 @@ class WorkOrderItem extends React.Component {
                 </Row>
                 <Row className="d-flex align-items-center">
                     <Col>
-                        <p className="mb-0">Created date: {new Date(Date.parse(this.props.workorder.createdDate)).toDateString()}</p>                    
+                        <p className="mb-0">Created date: {new Date(Date.parse(this.props.workorder.createdDate)).toLocaleDateString()}</p>                    
                         <p className="mb-0">Created by: {this.props.workorder.worker.firstName + " " + this.props.workorder.worker.lastName}</p>  
                     </Col>
                     <Col>
@@ -65,12 +64,13 @@ class WorkOrderItem extends React.Component {
                           </Row>
                           <Row className="mb-1">
                             <Col className="px-5 mx-5">
-                            {this.state.showStatusBtn && <Button variant="info" size="sm" block onClick={() => alert("Resolved!")}>Complete</Button>}
+                            {this.props.status && <Button variant="info" size="sm" block 
+                              onClick={() => this.props.onComplete(this.props.workorder.id)}>Complete</Button>}
                             </Col>
                           </Row>
                           <Row>
                             <Col className="text-center">
-                            {!this.state.showStatusBtn && <p className="mb-0">Completed date: {this.props.workorder.completedDate}</p>}
+                            {!this.props.status && <p className="mb-0">Completed date: {new Date(Date.parse(this.props.workorder.completedDate)).toLocaleDateString()}</p>}
                             </Col>
                           </Row>
                         </Container>

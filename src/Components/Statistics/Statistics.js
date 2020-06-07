@@ -1,45 +1,42 @@
 import React from 'react';
 import {LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer} from 'recharts';
 import {Tab, Tabs} from 'react-bootstrap';
+import {BASE_URL} from '../../vars';
+const axios = require('axios');
 
 class Statistics extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
         key: "orders",
-        chartData: [
-          {date: "01.05", value: 5},
-          {date: "02.05", value: 3},
-          {date: "03.05", value: 4},
-          {date: "04.05", value: 7},
-          {date: "05.05", value: 8},
-          {date: "06.05", value: 4},
-          {date: "07.05", value: 2},
-          {date: "08.05", value: 9},
-          {date: "09.05", value: 5},
-          {date: "10.05", value: 7},
-          {date: "11.05", value: 8},
-          {date: "12.05", value: 10},
-          {date: "13.05", value: 8},
-          {date: "14.05", value: 11},
-          {date: "15.05", value: 5},
-          {date: "16.05", value: 4},
-          {date: "17.05", value: 6},
-          {date: "18.05", value: 3},
-          {date: "19.05", value: 4},
-          {date: "20.05", value: 5},
-          {date: "21.05", value: 8},
-          {date: "22.05", value: 4},
-          {date: "23.05", value: 8},
-          {date: "24.05", value: 5},
-          {date: "25.05", value: 4},
-          {date: "26.05", value: 7},
-          {date: "27.05", value: 8},
-          {date: "28.05", value: 7},
-          {date: "29.05", value: 8},
-          {date: "30.05", value: 10}
-        ]
+        chartsData: [[], [], []]
     };
+    this.data = [];
+  }
+
+  componentDidMount() {
+    this.getAllStats();
+  }
+
+  getAllStats() {
+    ["Order", "DeliveryRequest", "WorkOrder"].forEach((item, index) => {
+      axios.get(BASE_URL + "/api/" + item + "/Statistics",
+      { withCredentials: true }
+      )
+      .then(response =>{this.data[index] = this.formatDate(response.data.data); this.setState({chartsData: this.data});})
+      .catch((error) => alert("Bad request"));
+    });
+  }
+
+  formatDate(arr) {
+    let tmp = arr;
+    tmp.forEach((item) => {
+      let date = new Date(Date.parse(item.date));
+      let day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+      let month = date.getMonth() < 10 ? "0" + date.getMonth() : date.getMonth();
+      item.date = day + "." + month;
+    });
+    return tmp;
   }
 
   makeChart = (data, object) => {
@@ -47,7 +44,7 @@ class Statistics extends React.Component {
           <div className="text-center">
             <ResponsiveContainer width="100%" height={350}>            
             <LineChart data={data}>
-                <Line type="monotone" dataKey="value" stroke="#ff007b" />
+                <Line type="monotone" dataKey="count" stroke="#ff007b" />
                 <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
                 <XAxis dataKey="date" />
                 <YAxis />
@@ -66,13 +63,13 @@ class Statistics extends React.Component {
                 activeKey={this.state.key}
                 onSelect={(k) => (this.setState({key: k}))}>
                 <Tab eventKey="orders" title="Orders" className="mx-4 py-3">
-                    {this.makeChart(this.state.chartData, "Orders")}
+                    {this.makeChart(this.state.chartsData[0], "Orders")}
                 </Tab>
                 <Tab eventKey="requests" title="Requests" className="mx-4 py-3">
-                    {this.makeChart(this.state.chartData, "Requests")}
+                    {this.makeChart(this.state.chartsData[1], "Delivery Requests")}
                 </Tab>
-                <Tab eventKey="workorders" title="Work orders" className="mx-4 py-3">
-                    {this.makeChart(this.state.chartData, "Work orders")}
+                <Tab eventKey="workorders" title="Work Orders" className="mx-4 py-3">
+                    {this.makeChart(this.state.chartsData[2], "Work Orders")}
                 </Tab>
             </Tabs>            
         </div>      

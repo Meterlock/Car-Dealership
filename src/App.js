@@ -26,7 +26,7 @@ class App extends React.Component {
         withCredentials: true
       }
     )
-    .then(() => this.setState({userRole: 1}))
+    .then(() => this.setState({userRole: 0}))
     .catch(() => alert("Bad request"));
   }
 
@@ -40,14 +40,14 @@ class App extends React.Component {
         withCredentials: true
       }
     )
-    .then(response => this.setState({userRole: 1}))
+    .then(response => this.setState({userRole: 4}))
     .catch(error => error.response.status === 401 ? alert("Wrong credentials!") : alert("Bad request"));
   }
 
   render() {
     return (
       <div id="general-div">
-        {this.state.userRole === 0 && <LoginPage logInCallback={(email, password) => this.logIn("kivanova@autodealer.com", "1234567")} />}
+        {this.state.userRole === 0 && <LoginPage logInCallback={(email, password) => this.logIn("harman@autodealer.com", "1234567")} />}
         {this.state.userRole === 1 && <ManagerPage logOutCallback={() => this.logOut()} username={this.username} />}
         {this.state.userRole === 2 && <ServiceManPage logOutCallback={() => this.logOut()} username={this.username} />}
         {this.state.userRole === 3 && <BuyerPage logOutCallback={() => this.logOut()} username={this.username} />}

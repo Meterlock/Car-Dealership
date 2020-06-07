@@ -6,8 +6,6 @@ class EmployeeInfo extends React.Component {
     super(props);
     this.state = {
     };
-    this.employee = props.employee;
-
   }
 
   render() {
@@ -15,17 +13,17 @@ class EmployeeInfo extends React.Component {
         <div>
             <Container className="border border-secondary mb-1">
               <Row>
-                <h4 className="mx-2">{this.employee.name}</h4>
+                <h4 className="mx-2">{this.props.employee.firstName + " " + this.props.employee.lastName}</h4>
               </Row>
               <Row className="mb-1">
                   <Col>
-                    <p className="mb-0">Birth date: {this.employee.birthday}</p>                    
-                    <p className="mb-0">Phone: {this.employee.phone}</p>
-                    <p className="mb-0">Email: {this.employee.email}</p> 
+                    <p className="mb-0">Birth date: {new Date(Date.parse(this.props.employee.birthday)).toLocaleDateString()}</p>                    
+                    <p className="mb-0">Phone: {this.props.employee.phone}</p>
+                    <p className="mb-0">Email: {this.props.employee.email}</p> 
                   </Col>
                   <Col>
-                    <p className="mb-0">Role: {this.employee.role}</p>                    
-                    <p className="mb-0">Salary: ${this.employee.salary}</p>
+                    <p className="mb-0">Role: {this.props.employee.role.name}</p>                    
+                    <p className="mb-0">Salary: ${this.props.employee.salary}</p>
                   </Col>
               </Row>
             </Container>

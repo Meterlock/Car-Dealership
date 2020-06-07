@@ -3,6 +3,7 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import InfoModal from '../InfoModal/InfoModal';
 import CarListItem from '../CarListItem/CarListItem';
 import ClientInfo from '../ClientInfo/ClientInfo';
+import RequestItem from '../RequestItem/RequestItem';
 import {BASE_URL} from '../../vars';
 const axios = require('axios');
 
@@ -13,7 +14,8 @@ class OrderItem extends React.Component {
       showRequest: false,
       showClient: false,
       showCar: false,
-      car: new Object()
+      car: new Object(),
+      request: new Object()
     };
   }
 
@@ -26,7 +28,19 @@ class OrderItem extends React.Component {
     .then((response) => {
       this.setState({car: response.data.data, showCar: true});
     })
-    .catch((error) => error.response ? alert(error.response.data.Errors[0].ErrorMessage) : alert("Bad request"));
+    .catch((error) => alert("Bad request"));
+  }
+
+  getRequest() {
+    axios.get(BASE_URL + "/api/DeliveryRequest/" + this.props.order.deliveryRequestId,
+        { 
+            withCredentials: true
+        }
+    )
+    .then((response) => {
+      this.setState({request: response.data.data, showRequest: true});
+    })
+    .catch((error) => alert("Bad request"));
   }
 
   render() {
@@ -52,10 +66,11 @@ class OrderItem extends React.Component {
                             <Col className="px-5 mx-5">
                             <Button variant="outline-success" size="sm" block onClick={() => this.getCar()}>Car</Button>
                             </Col>
-                          </Row>
+                          </Row>                          
                           <Row className="mb-2">
                             <Col className="px-5 mx-5">
-                            <Button variant="outline-primary" size="sm" block onClick={() => this.setState({showRequest: true})}>Request</Button>
+                            {this.props.order.deliveryRequestId ?
+                              <Button variant="outline-primary" size="sm" block onClick={() => this.getRequest()}>Request</Button> : null}
                             </Col>
                           </Row>
                     </Container>
@@ -69,13 +84,13 @@ class OrderItem extends React.Component {
                           </Row>
                           <Row className="mb-1">
                             <Col className="px-5 mx-5">
-                            {this.props.status && <Button variant="info" size="sm" block 
+                            {this.props.order.canPromote && <Button variant="info" size="sm" block 
                               onClick={() => this.props.onComplete(this.props.order.id)}>Complete</Button>}
                             </Col>
                           </Row>
                           <Row>
                             <Col className="text-center">
-                            {!this.props.status && <p className="mb-0">Completed date: {new Date(Date.parse(this.props.order.completedDate)).toLocaleDateString()}</p>}
+                            {!this.props.order.canPromote && <p className="mb-0">Completed date: {new Date(Date.parse(this.props.order.completedDate)).toLocaleDateString()}</p>}
                             </Col>
                           </Row>
                     </Container>                  
@@ -86,6 +101,8 @@ class OrderItem extends React.Component {
               show={true} hide={() => this.setState({showCar: false})}/>}
             {this.state.showClient && <InfoModal header="Client Info" body={<ClientInfo client={this.props.order.clientId} />} 
               show={true} hide={() => this.setState({showClient: false})}/>}
+            {this.state.showRequest && <InfoModal header="Delivery Request Info" body={<RequestItem request={this.state.request} status={null} onChangeStatus={null} />} 
+              show={true} hide={() => this.setState({showRequest: false})}/>}
         </div>      
     );
   }  

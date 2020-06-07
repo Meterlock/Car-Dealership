@@ -26,7 +26,7 @@ class BuyerPage extends React.Component {
                 logOutCallback={() => this.props.logOutCallback()} 
                 clickMenuCallback= {(i) => this.clickMenuItem(i)} />
             <SectionTitle title={this.state.currentSection}/>
-            {this.state.currentSection === "Delivery Requests" && <Requests />}
+            {this.state.currentSection === "Delivery Requests" && <Requests buyer={true} />}
             {this.state.currentSection === "Suppliers" && <Suppliers />}
         </div>      
     );

@@ -31,7 +31,7 @@ class ManagerPage extends React.Component {
             {this.state.currentSection === "Catalog" && <Catalog />}
             {this.state.currentSection === "Orders" && <Orders />}
             {this.state.currentSection === "Clients" && <Clients />}
-            {this.state.currentSection === "Delivery Requests" && <Requests />}
+            {this.state.currentSection === "Delivery Requests" && <Requests buyer={false} />}
         </div>      
     );
   }  

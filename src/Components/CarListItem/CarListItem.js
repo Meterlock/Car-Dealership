@@ -55,12 +55,16 @@ class CarListItem extends React.Component {
                           </Row>
                           <Row className="mb-2">
                             <Col>
-                              <Button variant="info" size="sm" block onClick={() => this.setState({showOrderModal: true})}>Order</Button>
+                              {!this.props.hideCarBtn ?
+                                <Button variant="info" size="sm" block onClick={() => this.setState({showOrderModal: true})}>Order</Button>
+                                : null}
                             </Col>
                           </Row>
                           <Row className="mb-1">
                             <Col>
-                            <Button variant="success" size="sm" block onClick={() => this.setState({showRequestModal: true})}>Request</Button>
+                              {!this.props.hideCarBtn ?
+                                <Button variant="success" size="sm" block onClick={() => this.setState({showRequestModal: true})}>Request</Button>
+                                : null}
                             </Col>
                           </Row>
                           <Row>

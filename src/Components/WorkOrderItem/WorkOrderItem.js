@@ -64,7 +64,7 @@ class WorkOrderItem extends React.Component {
                           </Row>
                           <Row className="mb-1">
                             <Col className="px-5 mx-5">
-                            {this.props.status && <Button variant="info" size="sm" block 
+                            {this.props.status && (this.props.id == this.props.workorder.worker.id) && <Button variant="info" size="sm" block 
                               onClick={() => this.props.onComplete(this.props.workorder.id)}>Complete</Button>}
                             </Col>
                           </Row>

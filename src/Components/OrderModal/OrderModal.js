@@ -35,7 +35,7 @@ class OrderModal extends React.Component {
 
   filterClients(search) {
     this.setState({clients: this.clients.filter(item => 
-        (item.firstName + item.lastName + item.passportId).toLowerCase().includes(search))});
+        (item.firstName + item.lastName + item.passportId).toLowerCase().includes(search.toLowerCase()))});
   }
 
   checkInputs() {
@@ -82,13 +82,13 @@ class OrderModal extends React.Component {
 
   createOrder(clientId) {
     let url = this.props.config ? "/WithDeliveryRequest" : "";
-    axios.post(BASE_URL + "/api/Order/Create" + url, null,
+    axios.post(BASE_URL + "/api/Order/Create" + url,
+        {
+            carId: parseInt(this.props.car),
+            clientId: parseInt(clientId)
+        },
         { 
             withCredentials: true,
-            params: { 
-                CarId: parseInt(this.props.car),
-                ClientId: parseInt(clientId)
-            }
         }
     )
     .then(() => {

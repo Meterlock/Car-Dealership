@@ -33,7 +33,7 @@ class ClientList extends React.Component {
                     </Card.Header>
                     <Accordion.Collapse eventKey={index}>
                         <Card.Body>
-                            {item.orders.map((item) => <OrderItem key={item.id} order={item} onComplete={(id) => this.props.handleComplete(id)} />)}
+                            {item.orders.map((item) => <OrderItem key={item.id} order={item} onComplete={(id) => this.props.handleComplete(id)} id={this.props.id} />)}
                         </Card.Body>
                     </Accordion.Collapse>                    
                 </Card>                

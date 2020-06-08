@@ -69,7 +69,7 @@ class OrderItem extends React.Component {
                           </Row>                          
                           <Row className="mb-2">
                             <Col className="px-5 mx-5">
-                            {this.props.order.deliveryRequestId ?
+                            {this.props.order.deliveryRequestId ? (this.props.id == this.props.order.manager.id) &&
                               <Button variant="outline-primary" size="sm" block onClick={() => this.getRequest()}>Request</Button> : null}
                             </Col>
                           </Row>
@@ -84,13 +84,14 @@ class OrderItem extends React.Component {
                           </Row>
                           <Row className="mb-1">
                             <Col className="px-5 mx-5">
-                            {this.props.order.canPromote && <Button variant="info" size="sm" block 
-                              onClick={() => this.props.onComplete(this.props.order.id)}>Complete</Button>}
+                            {this.props.order.canPromote && (this.props.id == this.props.order.manager.id) && 
+                              <Button variant="info" size="sm" block onClick={() => this.props.onComplete(this.props.order.id)}>Complete</Button>}
                             </Col>
                           </Row>
                           <Row>
                             <Col className="text-center">
-                            {!this.props.order.canPromote && <p className="mb-0">Completed date: {new Date(Date.parse(this.props.order.completedDate)).toLocaleDateString()}</p>}
+                            {(this.props.order.status.id == 2) &&
+                              <p className="mb-0">Completed date: {new Date(Date.parse(this.props.order.completedDate)).toLocaleDateString()}</p>}
                             </Col>
                           </Row>
                     </Container>                  

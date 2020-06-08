@@ -13,11 +13,23 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userRole: 0
+      userRole: 0,
+      userName: "",
+      userId: null
     };
   }
 
-  username = "Kirill";
+  componentDidMount() {
+      axios.get(BASE_URL + "/api/Account/UserInfo/Current",
+        { withCredentials: true }
+      )
+      .then(response => this.setState({
+        userRole: response.data.data.role.id, 
+        userName: response.data.data.firstName + " " + response.data.data.lastName,
+        userId: response.data.data.id
+      }))
+      .catch((error) => error.response ? null : alert("Bad request"));
+  }
 
   logOut() {
     axios.post(BASE_URL + "/api/Account/SignOut", 
@@ -40,18 +52,24 @@ class App extends React.Component {
         withCredentials: true
       }
     )
-    .then(response => this.setState({userRole: 4}))
-    .catch(error => error.response.status === 401 ? alert("Wrong credentials!") : alert("Bad request"));
+    .then(response => this.setState({
+      userRole: response.data.data.role.id, 
+      userName: response.data.data.firstName + " " + response.data.data.lastName,
+      userId: response.data.data.id
+    }))
+    .catch(error => error.response ? alert("Wrong credentials!") : alert("Bad request"));
   }
 
   render() {
     return (
       <div id="general-div">
-        {this.state.userRole === 0 && <LoginPage logInCallback={(email, password) => this.logIn("harman@autodealer.com", "1234567")} />}
-        {this.state.userRole === 1 && <ManagerPage logOutCallback={() => this.logOut()} username={this.username} />}
-        {this.state.userRole === 2 && <ServiceManPage logOutCallback={() => this.logOut()} username={this.username} />}
-        {this.state.userRole === 3 && <BuyerPage logOutCallback={() => this.logOut()} username={this.username} />}
-        {this.state.userRole === 4 && <DirectorPage logOutCallback={() => this.logOut()} username={this.username} />}
+        {this.state.userRole === 0 && <LoginPage logInCallback={(email, password) => this.logIn(email, password)} />}
+        {this.state.userRole === 2 && <ManagerPage id={this.state.userId} logOutCallback={() => this.logOut()} username={this.state.userName} />}
+        {this.state.userRole === 4 && <ServiceManPage id={this.state.userId} logOutCallback={() => this.logOut()} username={this.state.userName} />}
+        {this.state.userRole === 3 && <BuyerPage logOutCallback={() => this.logOut()} username={this.state.userName} />}
+        {this.state.userRole === 5 && <DirectorPage logOutCallback={() => this.logOut()} username={this.state.userName} />}
+        {/*admin*/}
+        {this.state.userRole === 1 && <LoginPage logInCallback={(email, password) => this.logIn(email, password)} />}
       </div>
     );
   }  

@@ -29,8 +29,8 @@ class ManagerPage extends React.Component {
                 clickMenuCallback= {(i) => this.clickMenuItem(i)} />
             <SectionTitle title={this.state.currentSection}/>
             {this.state.currentSection === "Catalog" && <Catalog />}
-            {this.state.currentSection === "Orders" && <Orders />}
-            {this.state.currentSection === "Clients" && <Clients />}
+            {this.state.currentSection === "Orders" && <Orders id={this.props.id} />}
+            {this.state.currentSection === "Clients" && <Clients id={this.props.id} />}
             {this.state.currentSection === "Delivery Requests" && <Requests buyer={false} />}
         </div>      
     );

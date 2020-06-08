@@ -26,7 +26,7 @@ class ServiceManPage extends React.Component {
                 logOutCallback={() => this.props.logOutCallback()} 
                 clickMenuCallback= {(i) => this.clickMenuItem(i)} />
             <SectionTitle title={this.state.currentSection}/>
-            {this.state.currentSection === "Work Orders" && <WorkOrders />}
+            {this.state.currentSection === "Work Orders" && <WorkOrders id={this.props.id} />}
             {this.state.currentSection === "Service" && <Service />}
         </div>      
     );

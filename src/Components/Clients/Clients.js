@@ -42,7 +42,7 @@ class Clients extends React.Component {
   }
 
   filter(item) {
-    return (item.firstName + item.lastName + item.passportId).toLowerCase().includes(this.state.curSearch);
+    return (item.firstName + item.lastName + item.passportId).toLowerCase().includes(this.state.curSearch.toLowerCase());
   }
 
   handleComplete(id) {
@@ -63,7 +63,7 @@ class Clients extends React.Component {
             <Form.Control placeholder="Search" onChange={(e) => this.setState({curSearch: e.target.value})}></Form.Control>
           </div>
           <ClientList clients={this.state.clients.filter((item) => this.filter(item))}
-            handleComplete={(id) => this.handleComplete(id)} />
+            handleComplete={(id) => this.handleComplete(id)} id={this.props.id} />
         </div>
     );
   }  

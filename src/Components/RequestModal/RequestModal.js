@@ -23,13 +23,13 @@ class RequestModal extends React.Component {
 
   submit() {
     if (!this.checkAmount()) { return; }
-    axios.post(BASE_URL + "/api/DeliveryRequest/Create", null,
+    axios.post(BASE_URL + "/api/DeliveryRequest/Create", 
+        {
+            carId: parseInt(this.props.car.id),
+            amount: parseInt(this.state.amount)
+        },
         { 
-            withCredentials: true,
-            params: { 
-                CarId: parseInt(this.props.car.id),
-                Amount: parseInt(this.state.amount)
-            }
+            withCredentials: true
         }
     )
     .then(() => {

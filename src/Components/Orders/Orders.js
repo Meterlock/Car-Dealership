@@ -62,7 +62,7 @@ class Orders extends React.Component {
               statuses={this.state.statuses} onStatus={(id) => this.setState({curStatus: id})} 
               switch={(flag) => {this.forCurUserOnly = flag; this.getOrders();}} />
             {this.state.orders.map((item) => this.filter(item) &&
-              <OrderItem key={item.id} order={item} onComplete={(id) => this.handleComplete(id)} />) }
+              <OrderItem key={item.id} order={item} onComplete={(id) => this.handleComplete(id)} id={this.props.id} />) }
         </div>      
     );
   }  

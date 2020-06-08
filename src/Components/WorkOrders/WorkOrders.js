@@ -67,7 +67,8 @@ class WorkOrders extends React.Component {
               statuses={this.state.statuses} onStatus={(id) => this.setState({curStatus: id})} 
               switch={(flag) => {this.forCurUserOnly = flag; this.getWorkOrders();}} />
             {this.state.workorders.map((item) => this.filter(item) &&
-              <WorkOrderItem key={item.id} workorder={item} status={item.status.id == 1} onComplete={(id) => this.handleComplete(id)} />) }
+              <WorkOrderItem key={item.id} workorder={item} status={item.status.id == 1} 
+                onComplete={(id) => this.handleComplete(id)} id={this.props.id} />) }
         </div>      
     );
   }  

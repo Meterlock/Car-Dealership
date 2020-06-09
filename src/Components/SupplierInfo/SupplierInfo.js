@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Image } from 'react-bootstrap';
+import {BASE_URL} from '../../vars';
 
 class SupplierInfo extends React.Component {
   constructor(props) {
@@ -17,6 +18,10 @@ class SupplierInfo extends React.Component {
                     <h4 className="mx-2">{this.props.supplier.companyName}</h4>
                 </Row>
                 <Row className="mb-2">
+                    <Col xl={2} className="d-flex align-items-center">
+                        <Image src={BASE_URL + "/api/Supplier/Photo/" + this.props.supplier.photos[0]} fluid />
+                    </Col>
+                    <Col>
                     <Container>
                         <Row>
                             <Col>
@@ -30,6 +35,7 @@ class SupplierInfo extends React.Component {
                             </Col>
                         </Row>
                     </Container>
+                    </Col>
                 </Row>
             </Container>
         </div>      

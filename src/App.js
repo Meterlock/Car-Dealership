@@ -6,6 +6,8 @@ import BuyerPage from './Components/BuyerPage/BuyerPage';
 import DirectorPage from './Components/DirectorPage/DirectorPage';
 import LoginPage from './Components/LoginPage/LoginPage';
 import {BASE_URL} from './vars';
+import SwaggerUI from "swagger-ui-react"
+import "swagger-ui-react/swagger-ui.css"
 const axios = require('axios');
 var md5 = require('md5');
 
@@ -69,7 +71,8 @@ class App extends React.Component {
         {this.state.userRole === 3 && <BuyerPage logOutCallback={() => this.logOut()} username={this.state.userName} />}
         {this.state.userRole === 5 && <DirectorPage logOutCallback={() => this.logOut()} username={this.state.userName} />}
         {/*admin*/}
-        {this.state.userRole === 1 && <LoginPage logInCallback={(email, password) => this.logIn(email, password)} />}
+        {this.state.userRole === 1 && <SwaggerUI url={BASE_URL + "/swagger/index.html"} />
+          /*<LoginPage logInCallback={(email, password) => this.logIn(email, password)} />*/ }
       </div>
     );
   }  
